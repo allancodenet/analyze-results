@@ -9,7 +9,6 @@ class StudentDashboard < Administrate::BaseDashboard
   # on pages throughout the dashboard.
   ATTRIBUTE_TYPES = {
     id: Field::Number,
-    grades: Field::HasMany,
     index_no: Field::String,
     name: Field::String,
     student_subjects: Field::HasMany,
@@ -26,7 +25,7 @@ class StudentDashboard < Administrate::BaseDashboard
   # Feel free to add, remove, or rearrange items.
   COLLECTION_ATTRIBUTES = %i[
     id
-    grades
+    
     index_no
     name
   ].freeze
@@ -35,7 +34,7 @@ class StudentDashboard < Administrate::BaseDashboard
   # an array of attributes that will be displayed on the model's show page.
   SHOW_PAGE_ATTRIBUTES = %i[
     id
-    grades
+    
     index_no
     name
     student_subjects
@@ -49,7 +48,7 @@ class StudentDashboard < Administrate::BaseDashboard
   # an array of attributes that will be displayed
   # on the model's form (`new` and `edit`) pages.
   FORM_ATTRIBUTES = %i[
-    grades
+    
     index_no
     name
     student_subjects
@@ -72,7 +71,7 @@ class StudentDashboard < Administrate::BaseDashboard
   # Overwrite this method to customize how students are displayed
   # across all pages of the admin dashboard.
   #
-  # def display_resource(student)
-  #   "Student ##{student.id}"
-  # end
+  def display_resource(student)
+    "#{student.name}"
+  end
 end

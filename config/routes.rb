@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
   devise_for :views
-  
+  devise_for :users
   root 'home#index'
   namespace :admin do
-    devise_for :users
+    
       resources :substreams
       resources :subjects
       resources :students

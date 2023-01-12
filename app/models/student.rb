@@ -4,6 +4,6 @@ class Student < ApplicationRecord
     validates :index_no, presence: true
     has_many( :student_subjects)
     has_many :subjects ,through: :student_subjects
-    # has_many :grades, through: :subjects
+    has_many :grades, through: :subjects
     belongs_to :substream    
 end
