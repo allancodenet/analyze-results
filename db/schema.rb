@@ -10,13 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_01_10_175515) do
+ActiveRecord::Schema[7.0].define(version: 2023_01_19_165853) do
   create_table "grades", force: :cascade do |t|
     t.string "name"
     t.integer "points"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "subject_id"
   end
 
   create_table "streams", force: :cascade do |t|
@@ -30,6 +29,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_10_175515) do
     t.integer "subject_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "grade_id"
+    t.index ["grade_id"], name: "index_student_subjects_on_grade_id"
+    t.index ["student_id", "subject_id"], name: "index_student_subjects_on_student_id_and_subject_id", unique: true
     t.index ["student_id"], name: "index_student_subjects_on_student_id"
     t.index ["subject_id"], name: "index_student_subjects_on_subject_id"
   end
@@ -81,6 +83,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_10_175515) do
     t.index ["reset_password_token"], name: "index_views_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "student_subjects", "grades"
   add_foreign_key "student_subjects", "students"
   add_foreign_key "student_subjects", "subjects"
   add_foreign_key "substreams", "streams"

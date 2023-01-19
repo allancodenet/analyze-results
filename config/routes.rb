@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
-  devise_for :views
+  resources :marksheets, only:[:index]
+  resources  :subjects
+  resources :student_subjects
+  resources :studentgrades
+  
   devise_for :users
   root 'home#index'
   namespace :admin do

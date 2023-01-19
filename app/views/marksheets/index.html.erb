@@ -1,0 +1,42 @@
+<div class = "container mx-auto p-6">
+  <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+      <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+        <tr>
+          <th scope="col" class="px-6 py-3">
+            Student Name
+          </th>
+          <% @subjects.each do |subject| %>
+            <th scope="col" class="px-6 py-3">
+              <%=subject.name%>
+            </th>
+          <% end %>
+          <th scope="col" class="px-6 py-3">
+            Total
+          </th>
+          <th scope="col" class="px-6 py-3">
+            Rank
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @students.each do |student|%>
+          <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
+            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+              <%= student.name%>
+            </th>
+            <td class="px-6 py-4">
+              <%=student.student_subjects.find{ |sb| sb.subject_name.downcase == "history"}&.grade&.name%>
+            </td>
+            <td class="px-6 py-4">
+              $2999
+            </td>
+            <td class="px-6 py-4">
+              <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

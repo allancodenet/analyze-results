@@ -1,0 +1,33 @@
+<%= form_with url: subjects_path , method: :get do |form|%>
+  <div class = "flex  space-x-3 max-w-3xl mx-auto">
+    <div>
+      <%= form.label :substream_id%>
+      <%= form.collection_select :substream_id , Substream.all, :id ,:name ,{selected: @substream}, class: "block"%>
+    </div>
+    <div>
+      <%= form.label :subject_id%>
+      <%= form.collection_select :subject_id , Subject.all, :id ,:name ,{selected: @subject}, class: "block"%>
+    </div>
+    <%= form.submit "load", name: nil, class: "bg-gray-800 px-4 py-2 text-white cursor-pointer inline-flex "%>
+  </div>
+<% end %>
+<%= form_with model: @subject do |form|%>
+  <table class = "table">
+    <tr>
+      <th>student name</th>
+      <th>grade</th>
+    </tr>
+    <tbody>
+      <%= form.fields_for :student_subjects do |f|%>
+        <tr>
+          <td> <%= f.object.student.name%></td>
+          <%=f.hidden_field :student_id , value:  f.object.student.id%>
+        </tr>
+        <tr>
+          <td> <%= f.collection_select :grade_id , Grade.all, :id ,:name ,{} %></td>
+        </tr>
+      </tbody>
+    <% end %>
+  </table>
+  <%= form.submit%>
+<% end %>

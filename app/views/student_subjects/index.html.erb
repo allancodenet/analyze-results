@@ -1,0 +1,31 @@
+<%= form_with url: student_subjects_path , method: :get do |form|%>
+  <div class = "flex  space-x-3 max-w-3xl mx-auto">
+    <div>
+      <%= form.label :substream_id%>
+      <%= form.collection_select :substream_id , Substream.all, :id ,:name ,{}, class: "block"%>
+    </div>
+    <div>
+      <%= form.label :subject_id%>
+      <%= form.collection_select :subject_id , Subject.all, :id ,:name ,{}, class: "block"%>
+    </div>
+    <%= form.submit "load", class: "bg-gray-800 px-4 py-2 text-white cursor-pointer inline-flex "%>
+  </div>
+<% end %>
+<table class = "table">
+  <tr>
+    <th>student name</th>
+    <th>grade</th>
+  </tr>
+  <tbody>
+    <% @students.each do |student|%>
+      <tr>
+        <td> <%= student.name%></td>
+      </tr>
+      <%= form_with url: student_subjects_path  do |form|%>
+        <tr>
+          <td> <%= form.collection_select :grade_id , Grade.all, :id ,:name ,{}, class: "block" , onchange: "this.form.requestSubmit()"%></td>
+        </tr>
+      <% end %>
+    </tbody>
+  <% end %>
+</table>

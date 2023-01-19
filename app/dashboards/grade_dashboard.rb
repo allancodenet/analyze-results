@@ -11,7 +11,6 @@ class GradeDashboard < Administrate::BaseDashboard
     id: Field::Number,
     name: Field::String,
     points: Field::Number,
-    subject: Field::BelongsTo,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
   }.freeze
@@ -25,7 +24,6 @@ class GradeDashboard < Administrate::BaseDashboard
     id
     name
     points
-    subject
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES
@@ -34,7 +32,7 @@ class GradeDashboard < Administrate::BaseDashboard
     id
     name
     points
-    subject
+   
     created_at
     updated_at
   ].freeze
@@ -45,7 +43,7 @@ class GradeDashboard < Administrate::BaseDashboard
   FORM_ATTRIBUTES = %i[
     name
     points
-    subject
+    
   ].freeze
 
   # COLLECTION_FILTERS
