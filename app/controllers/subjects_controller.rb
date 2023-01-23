@@ -1,5 +1,5 @@
 class SubjectsController < ApplicationController
-  before_action :set_subject
+  before_action :set_subject, only:[:index]
   def index
 
 
@@ -7,7 +7,7 @@ class SubjectsController < ApplicationController
     
     @students = @substream.present? ? @substream.students : Student.all
     
-
+  # @subject.student_subjects = []
    @students.each do |student|
     @subject.student_subjects.build(student: student, subject: @subject)
    end
@@ -16,8 +16,10 @@ class SubjectsController < ApplicationController
   end
 
 def update
- 
-  @subject= Subject.update(subject_params)
+  binding.break
+  
+  @subject.update!(params)
+  # Subject.update(subject_params)
 
   redirect_to  subjects_path
   
@@ -31,7 +33,7 @@ def subject_params
 end
 
 def set_subject
-  @subject = Subject.find_by(params[:subject_id])
+  @subject = Subject.find_by(id: params[:subject_id]) || Subject.first
 end
 
 
